@@ -1,0 +1,50 @@
+{# auth/register.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div class="container">
+    {% if error != '' %}
+    <div class="alert alert-danger alert-dismissible fade show">
+         <strong>Error !!</strong><br>{{ error | raw }}
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <form class="border border-light p-5 m-5" style="color: black;background-color: #EEE;" action="{{ path('app_auth_perso_edit') }}" name="sentMessage" id="contactForm" method="post" novalidate>
+          <p class="h4 mb-4 text-center">Register</p>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Name</label>
+              <input type="text" class="form-control" placeholder="Name" id="name" name="username" required
+                 data-validation-required-message="Please enter your name." value="{{name}}">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Email Address</label>
+              <input type="email" class="form-control" placeholder="Email Address" id="email" name="email"
+                required data-validation-required-message="Please enter your email address." value="{{email}}">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+              <label>Password</label>
+              <input type="password" class="form-control" placeholder="Password" id="password" name="password"
+               required data-validation-required-message="Please enter your password." value="{{password}}">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div id="success"></div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-warning" id="sendMessageButton">Save</button>
+            <a class="btn btn-warning" id="sendMessageButton" href="{{ path('app_auth_unsubscribe') }}">Unsubscribe</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{# auth/register.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+  <div class="accordion p-5 m-5" id="accordionExample">
+    {% for list in lists %}
+    {% set counter = ( counter | default(0) ) + 1 %}
+    <div class="card">
+      <div class="card-header bg-warning" id="headingOne">
+        <h2 class="mb-0">
+          <button type="button" class="btn btn-danger" onclick="window.location.href='{{ path('app_movie_deletelist') }}?{{ {'id': list.id, 'name': list.name}|url_encode }}'">Delete</button>
+          <button type="button" class="btn btn-success" onclick="window.location.href='{{ path('app_movie_editlist') }}?{{ {'id': list.id, 'name': list.name}|url_encode }}'">Edit</button>
+          <button class="btn btn-link" style="color: black" type="button" data-toggle="collapse" data-target="#collapse{{ counter }}" aria-expanded="false" aria-controls="collapseOne">
+            <span class="badge badge-light" style="margin-right: 20px">{{list.getMovies().count()}}</span>{{ list.name }}
+          </button>
+        </h2>
+      </div>
+      <div style="background-color: #EEE;" id="collapse{{ counter }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body" style="color: black">
+        <ul class="list-unstyled">
+          {% for movie in list.getMovies() %}
+           <li class="media" style="margin: 5px;border: 1px solid #ccc!important; border-radius: 16px; padding: 10px">
+           <div class="media">
+            <img  style="cursor: pointer;" width=65 src="{{movie.poster}}" class="mr-3" onclick="window.location.href='{{ path('app_movie_detail') }}?{{ {'id': movie.bddId}|url_encode }}'">
+            <div class="media-body align-self-center">
+              <h5 class="mt-0">{{ movie.title }}</h5>
+              <button type="button" style="margin: 5px" class="btn btn-danger align-self-center " onclick="window.location.href='{{ path('app_movie_deletemovie') }}?{{ {'listId': list.id, 'movieId': movie.id}|url_encode }}'">Remove from this list</button>
+            </div>
+           </div>
+           </li>
+          {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

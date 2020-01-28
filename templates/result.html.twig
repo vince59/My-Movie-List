@@ -1,0 +1,52 @@
+{# home.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+<br>
+<h1>Results for "{{search}}"</h1>
+{% for movie in movies %}
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="card text-white" style="background-color: #EEE;">
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <img onclick="window.location.href='{{ path('app_movie_detail') }}?{{ {'id': movie.id}|url_encode }}'" style="margin:10px; border: solid white 4px; border-radius:2px" width=150 src="{{ movie.imglink }}" alt="Card image cap">
+                    </div>
+                    <div class="card-body" style="color: black;">
+                        <h4 class="card-title">{{ movie.title }}</h4>
+                        <p class="card-text">{{ movie.overview }}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    {% if name == '' %}
+                        <a href="{{ path('app_auth_login_show') }}" class="btn btn-warning">Please login to manage your list!</a>
+                        {% else %}
+                            {% if lists == null %}
+                                <a href="{{ path('app_movie_show') }}" class="btn btn-warning">Create a new list</a>
+                            {% else %}
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Add to your list
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        {% for list in lists %}
+                                            {#
+                                            <a class="dropdown-item" href="{{ path('app_movie_addmovie') }}?{{ {'listId': list.id, 'movieId': movie.id, 'title': movie.title, 'poster': movie.imglink }|url_encode }}">{{list.name}}</a>
+                                            #}
+                                            <a class="dropdown-item" onclick="addToList('{{ path('app_movie_addmovie') }}?{{ {'listId': list.id, 'movieId': movie.id, 'title': movie.title, 'poster': movie.imglink }|url_encode }}','{{movie.title}} added to {{list.name}}')">{{list.name}}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endif %}  
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

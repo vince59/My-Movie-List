@@ -1,0 +1,33 @@
+{# auth/register.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <form class="border border-light p-5 m-5" style="color: black;background-color: #EEE;" action="{{ path('app_movie_newlist') }}" name="sentMessage" id="contactForm" method="post" novalidate>
+          <p class="h4 mb-4 text-center">Create a new movies list</p>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Name</label>
+              <input type="text" class="form-control" placeholder="List name" id="name" name="name">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+              <label>Comment</label>
+              <input type="text" class="form-control" placeholder="comment" id="comment" name="comment">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div id="success"></div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-warning" id="sendMessageButton">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

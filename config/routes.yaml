@@ -1,0 +1,102 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+app_home_show:
+    path: /home
+    controller: App\Controller\HomeController::show
+
+app_home_show_result:
+    path: /home/result
+    methods:    POST
+    controller: App\Controller\HomeController::show_result
+
+app_auth_show:
+    path: /auth/show
+    methods:    GET|HEAD
+    controller: App\Controller\AuthController::register_view
+
+app_auth_unsubscribe:
+    path: /auth/unsubscribe
+    methods:    GET|HEAD
+    controller: App\Controller\AuthController::unRegister
+
+app_auth_login_show:
+    path: /auth/login
+    methods:    GET|HEAD
+    controller: App\Controller\AuthController::login_view
+
+app_auth_logout:
+    path: /auth/logout
+    methods:    GET|HEAD
+    controller: App\Controller\AuthController::logout
+
+app_auth_login:
+    path: /auth/login
+    methods:    POST
+    controller: App\Controller\AuthController::login
+
+app_auth_register:
+    path: /auth/register
+    methods:    POST
+    controller: App\Controller\AuthController::register
+
+app_auth_perso_show:
+    path: /auth/perso_show
+    methods:    GET
+    controller: App\Controller\AuthController::persoShow
+
+app_auth_perso_edit:
+    path: /auth/perso_edit
+    methods:    POST
+    controller: App\Controller\AuthController::persoEdit
+
+app_movie_show:
+    path: /movie/show
+    methods:    GET|HEAD
+    controller: App\Controller\MovieController::show
+
+app_movie_newlist:
+    path: /movie/newlist
+    methods:    POST
+    controller: App\Controller\MovieController::newList
+    
+app_movie_view:
+    path: /movie/view
+    methods:    GET|HEAD
+    controller: App\Controller\MovieController::viewList
+
+app_movie_defaultlist:
+    path: /movie/setdefault
+    methods:    GET
+    controller: App\Controller\MovieController::defaultList
+
+app_movie_editlist:
+    path: /movie/editlist
+    methods:    GET
+    controller: App\Controller\MovieController::editList
+
+app_movie_savelist:
+    path: /movie/savelist
+    methods:    POST
+    controller: App\Controller\MovieController::saveList
+
+app_movie_deletelist:
+    path: /movie/deletelist
+    methods:    GET
+    controller: App\Controller\MovieController::deleteList
+
+app_movie_addmovie:
+    path: /movie/addmovie
+    methods:    GET
+    controller: App\Controller\MovieController::addMovie
+
+app_movie_detail:
+    path: /movie/detail
+    methods:    GET
+    controller: App\Controller\MovieController::showDetail
+
+app_movie_deletemovie:
+    path: /movie/delete
+    methods:    GET
+    controller: App\Controller\MovieController::deleteMovie
+
